@@ -90,13 +90,13 @@ public class NamingServer implements Service, Registration
     @Override
     public void lock(Path path, boolean exclusive) throws FileNotFoundException
     {
-        throw new UnsupportedOperationException("not implemented");
+        //throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
     public void unlock(Path path, boolean exclusive)
     {
-        throw new UnsupportedOperationException("not implemented");
+        //throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
