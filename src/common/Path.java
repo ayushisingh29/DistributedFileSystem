@@ -2,8 +2,6 @@ package common;
 
 import java.io.*;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /** Distributed filesystem paths.
 
@@ -24,7 +22,7 @@ import java.util.regex.Pattern;
 public class Path implements Iterable<String>, Comparable<Path>, Serializable
 {
     String root = null;
-    ArrayList<String> pathList = new ArrayList<>();
+    public ArrayList<String> pathList = new ArrayList<>();
 
     /** Creates a new path which represents the root directory. */
     public Path()
@@ -44,20 +42,20 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
      */
     public Path(Path path, String component)
     {
-        System.out.println("Path and component constructor - " + path.pathList + ", " + component);
+        //System.out.println("Path and component constructor - " + path.pathList + ", " + component);
 
         this.root = path.root;
         this.pathList.addAll(path.pathList);
-        System.out.println("Path = " + this.pathList);
+        //System.out.println("Path = " + this.pathList);
 
         if(component == null || component.length() == 0 || component.contains(":") || component.contains("/")) {
-            System.out.println("Component blotted");
+            //System.out.println("Component blotted");
             throw new IllegalArgumentException();
         }
 
         this.pathList.add(component);
 
-        System.out.println("Added " + component +"to path. New path - " + this.pathList);
+        //System.out.println("Added " + component +"to path. New path - " + this.pathList);
 
         //throw new UnsupportedOperationException("not implemented");
     }
@@ -77,7 +75,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
     public Path(String path)
     {
 
-        System.out.println("Creating path with " + path);
+        //System.out.println("Creating path with " + path);
 
         if(path == null || path.length() == 0 || !path.startsWith("/") || path.contains(":")) {
 
@@ -100,7 +98,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
             }
         }
 
-        System.out.println("Created path - " + this.pathList);
+        //System.out.println("Created path - " + this.pathList);
     }
 
     /** Returns an iterator over the components of the path.
@@ -114,13 +112,13 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
     @Override
     public Iterator<String> iterator()
     {
-        System.out.println(" Returning iterator.");
+        //System.out.println(" Returning iterator.");
 
         return (Collections.unmodifiableList(this.pathList.subList(1,this.pathList.size())).iterator());
     }
 
     /** Lists the paths of all files in a directory tree on the local
-     filesystem.
+     file//System.
 
      @param directory The root directory of the directory tree.
      @return An array of relative paths, one for each file in the directory
@@ -141,6 +139,11 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
         }
 
         try {
+            System.out.println("Dir Abs PAth - " + directory.getCanonicalPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
 
             String p = directory.getCanonicalPath();
 
@@ -153,7 +156,9 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
 
             for (String file : files) {
                 paths[++i] = new Path(file);
-                System.out.println(file);
+                System.out.println("List : " + new File(file).getCanonicalPath());
+
+
             }
 
         } catch (Exception e) {
@@ -179,7 +184,9 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
                         String offset = parent.getPath();
 
                         path = path.substring(offset.length());
+                        System.out.println("Adding to path - " + path);
                         lstFiles.add(path);
+                        System.out.println((new File(path).exists()));
                     }
                 }
             }
@@ -205,7 +212,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
      */
     public Path parent()
     {
-        System.out.println("Returning parent for " + this.toString());
+        //System.out.println("Returning parent for " + this.toString());
 
         int size = this.pathList.size()-1;
 
@@ -221,7 +228,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
             newPath.pathList.add(this.pathList.get(i));
         }
 
-        System.out.println("Returning the parent as " + newPath.toString());
+        //System.out.println("Returning the parent as " + newPath.toString());
         return newPath;
     }
 
@@ -233,15 +240,15 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
      */
     public String last()
     {
-        System.out.println("Returning the last component for " + this.toString());
+        //System.out.println("Returning the last component for " + this.toString());
         int size = this.pathList.size();
 
         if(size == 1) {
-            System.out.println("No last component.");
+            //System.out.println("No last component.");
             throw new IllegalArgumentException();
         }
 
-        System.out.println("Returning last component - " + this.pathList.get(size-1));
+        //System.out.println("Returning last component - " + this.pathList.get(size-1));
         return this.pathList.get(size-1);
     }
 
@@ -278,7 +285,15 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
      */
     public File toFile(File root)
     {
-        throw new UnsupportedOperationException("not implemented");
+        if(root == null) {
+            System.out.println("Creating new file in - " + root.getPath());
+            System.out.println("to string is................." + this.toString() + "\n");
+            return new File(this.toString());
+        }
+
+        System.out.println("returning new File for " + root.getPath() + this.toString());
+        return new File(root.getPath() + this.toString());
+
     }
 
     /** Compares this path to another.
@@ -363,7 +378,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
     {
         String result = "";
 
-        System.out.println("Returning path for " + this.pathList);
+        //System.out.println("Returning path for " + this.pathList);
 
         if(this.pathList.size() == 0) {
             return null;
@@ -380,7 +395,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
 
         }
 
-        System.out.println("Returning path as " + result + " length = " + result.length());
+        //System.out.println("Returning path as " + result + " length = " + result.length());
 
         return result.trim();
     }

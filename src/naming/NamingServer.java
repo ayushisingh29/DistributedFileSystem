@@ -38,9 +38,22 @@ public class NamingServer implements Service, Registration
         <p>
         The naming server is not started.
      */
+    Skeleton serviceSkeleton;
+    Skeleton registerSkeleton;
+
+    Storage clientStub;
+    Command commandStub;
+
+    Path[] pathFiles;
     public NamingServer()
     {
-        throw new UnsupportedOperationException("not implemented");
+        InetSocketAddress serviceAddress = new InetSocketAddress("127.0.0.1", 6000);
+        InetSocketAddress registerAddress = new InetSocketAddress("127.0.0.1", 6001);
+
+        serviceSkeleton = new Skeleton(Service.class, serviceAddress);
+        registerSkeleton = new Skeleton(Registration.class, registerAddress);
+
+        //throw new UnsupportedOperationException("not implemented");
     }
 
     /** Starts the naming server.
@@ -56,7 +69,19 @@ public class NamingServer implements Service, Registration
      */
     public synchronized void start() throws RMIException
     {
-        throw new UnsupportedOperationException("not implemented");
+        startSkeleton();
+        //throw new UnsupportedOperationException("not implemented");
+    }
+
+    private void startSkeleton() {
+        try {
+            serviceSkeleton.start();
+            registerSkeleton.start();
+        } catch (RMIException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     /** Stops the naming server.
@@ -70,7 +95,10 @@ public class NamingServer implements Service, Registration
      */
     public void stop()
     {
-        throw new UnsupportedOperationException("not implemented");
+        serviceSkeleton.stop();
+        registerSkeleton.stop();
+        stopped(null);
+        //throw new UnsupportedOperationException("not implemented");
     }
 
     /** Indicates that the server has completely shut down.
@@ -141,6 +169,10 @@ public class NamingServer implements Service, Registration
     public Path[] register(Storage client_stub, Command command_stub,
                            Path[] files)
     {
-        throw new UnsupportedOperationException("not implemented");
+        this.clientStub = client_stub;
+        this.commandStub = command_stub;
+        this.pathFiles = files;
+        return this.pathFiles;
+        //throw new UnsupportedOperationException("not implemented");
     }
 }

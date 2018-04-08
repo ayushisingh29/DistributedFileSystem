@@ -1,10 +1,21 @@
 package rmi;
 
-
+import java.io.EOFException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /** RMI skeleton
 
@@ -30,13 +41,14 @@ import java.util.Random;
 */
 public class Skeleton<T>
 {
-    private Class<T> c = null;
-    private T        server = null;
-    InetSocketAddress address = null;
-    ListenerThread listenerThreadObj = null;
-    private Thread listenerThread = null;
-    private ServerSocket serverSocket = null;
-
+    
+       private Class<T> c; 
+       private  T server ;
+       private InetSocketAddress address;  //this is the address
+       public InetSocketAddress addressRef;
+       public threadListener listenerThread; //listener thread, which spins service threads
+       public ServerSocket socket= null; //this is a server socket created to listen to the requests
+       public Thread thread = null; 
     /** Creates a <code>Skeleton</code> with no initial server address. The
         address will be determined by the system when <code>start</code> is
         called. Equivalent to using <code>Skeleton(null)</code>.
@@ -56,34 +68,31 @@ public class Skeleton<T>
         @throws NullPointerException If either of <code>c</code> or
                                      <code>server</code> is <code>null</code>.
      */
-    public Skeleton(Class<T> c, T server) {
-
-        if(c == null || server == null) {
-            throw new NullPointerException();
+    public Skeleton(Class<T> c, T server)
+    {
+        if(c == null || server == null){ //check if the interface is null or the server implementing interface is null
+            throw new NullPointerException("interface or the server is null\n");
         }
-
-        else if(!c.isInterface())
-        {
-            throw new Error(" Error in instantiating server due to bad interface");
-        }
-        else {
-            if (checkInterface(c)) {
-                this.c      = c;
-                this.server = server;
-                try {
-                    Random rand = new Random();
-                    int  n = rand.nextInt(50) + 1025;
-                    this.address = new InetSocketAddress("0.0.0.0",n);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                listenerThreadObj = ListenerThread.getListenerThread();
-                listenerThreadObj.setServer(server);
-            }
-            else {
-                throw new Error("Non remote interface error!");
-            }
-        }
+        
+         if(!c.isInterface()){ //Validate if C is interface or not
+             throw new Error("Invalid interface\n");
+         }
+         
+         if(!isInterfaceSyntaxCorrect(c)){ //check if the interface syntax is correct.
+            throw new Error("Invalid interface\n");
+         }
+        this.c=c; //the interface
+        this.server=server; //the server
+        Random rand= new Random(); //since the address here is going to be null, in such case assign a random port
+        int start=7000;           //to Inetsocketaddress address. 
+        int end=30000;
+        int randPort=rand.nextInt(end-start) + end;
+           try {
+               this.address= new InetSocketAddress(InetAddress.getLocalHost(),randPort);
+               this.addressRef=this.address;
+           } catch (UnknownHostException ex) {
+               Logger.getLogger(Skeleton.class.getName()).log(Level.SEVERE, null, ex);
+           }
     }
 
     /** Creates a <code>Skeleton</code> with the given initial server address.
@@ -104,51 +113,36 @@ public class Skeleton<T>
         @throws NullPointerException If either of <code>c</code> or
                                      <code>server</code> is <code>null</code>.
      */
-    public Skeleton(Class<T> c, T server, InetSocketAddress address){
-        if(c == null || server == null) {
-            throw new NullPointerException();
+    public Skeleton(Class<T> c, T server, InetSocketAddress address) 
+    {
+        
+        if(c == null || server == null){
+            throw new NullPointerException("interface or the server is null\n");
         }
-        else if(!c.isInterface())
-        {
-            throw new Error(" Error in instantiating server due to bad interface");
-        }
-        else {
-            if(checkInterface(c)) {
-                this.c = c;
-                this.server = server;
-                this.address = address;
-                listenerThreadObj = ListenerThread.getListenerThread();
-                listenerThreadObj.setServer(server);
-            }
-            else {
-                throw new Error("Non remote interface error!");
-            }
-        }
-    }
-
-    /**
-     * Function to check if interface being used is Remote.
-     */
-    private boolean checkInterface(Class<T> c) {
-        boolean isCorrect = false;
-        int numberOfMethods    = 0;
-        int numberOfRMIExceptions = 0;
-
-        Method[] methods = c.getMethods();
-        for (Method method : methods) {
-            numberOfMethods++;
-            for (Class<?> exception : method.getExceptionTypes()) {
-                if (exception.getName().contains("rmi.RMIException")) {
-                    numberOfRMIExceptions++;
-                }
+        
+        if(!c.isInterface()){
+             throw new Error("not an interface, provide correct value\n");
+         }
+        
+        if(!isInterfaceSyntaxCorrect(c)){ //check if the interface syntax is correct.
+            throw new Error("Invalid interface\n");
+         }
+         
+        this.c=c;
+        this.server=server;
+        this.address=address;
+        if(this.address == null){ //if the address is null create a new inetsocketaddress using random port
+        Random rand= new Random();
+        int start=7000;
+        int end=30000;
+        int randPort=rand.nextInt(end-start) + end;
+            try {
+                this.address= new InetSocketAddress(InetAddress.getLocalHost(),randPort);
+                this.addressRef=this.address;
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(Skeleton.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-        if(numberOfMethods == numberOfRMIExceptions) {
-            isCorrect = true;
-        }
-
-        return isCorrect;
     }
 
     /** Called when the listening thread exits.
@@ -169,10 +163,12 @@ public class Skeleton<T>
         @param cause The exception that stopped the skeleton, or
                      <code>null</code> if the skeleton stopped normally.
      */
-    protected void stopped(Throwable cause) {
-
+    protected void stopped(Throwable cause)
+    {
     }
 
+    
+   
     /** Called when an exception occurs at the top level in the listening
         thread.
 
@@ -188,10 +184,27 @@ public class Skeleton<T>
         @return <code>true</code> if the server is to resume accepting
                 connections, <code>false</code> if the server is to shut down.
      */
-    protected boolean listen_error(Exception exception) {
+    protected boolean listen_error(Exception exception)
+    {
         return false;
     }
 
+    
+    public InetSocketAddress findAddress(){
+        return this.address;
+    }
+    
+     public boolean isInterfaceSyntaxCorrect(Class c){
+         for(Method method: c.getDeclaredMethods()){ //from the interface pull all the methods and iterate one by one
+             for (Class excep: method.getExceptionTypes()){ //fetch the exception type defined for the declared method
+                if(excep.getName().contains("RMIException")){// check if the exception contains RMIException, if yes then return true 
+                    return true;                             //stating that the interface is correct else return false
+                }
+             }   
+         }
+         return false;
+    }
+    
     /** Called when an exception occurs at the top level in a service thread.
 
         <p>
@@ -211,25 +224,25 @@ public class Skeleton<T>
         accepted. The network address used for the server is determined by which
         constructor was used to create the <code>Skeleton</code> object.
 
-        @throws RMIException When the listening socket cannot be created or
+        @throws RMIException When the listening socketSrv cannot be created or
                              bound, when the listening thread cannot be created,
                              or when the server has already been started and has
                              not since stopped.
      */
     public synchronized void start() throws RMIException
     {
-        if(listenerThread == null) {
-            listenerThreadObj.isStopped = false;
-            listenerThreadObj.askedToClose = false;
-            try {
-                serverSocket = new ServerSocket(this.address.getPort());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            listenerThreadObj.serverSocket = this.serverSocket;
-            listenerThread = new Thread(this.listenerThreadObj);
-            listenerThread.start();
+     
+        if(thread == null){ // this is used because start() shouldn't be called again once it is in the process of execution
+        try{
+            socket= new ServerSocket(this.address.getPort());// creates a server socket bound to the port in the argument 
+        }catch(Exception ex){
+            throw new RMIException("Error creating sockets\n");
         }
+        listenerThread= new threadListener(this, this.server, this.c, this.address, socket, true);//listener thread object is created
+        thread= new Thread(listenerThread);//listener thread is created
+        thread.start();//listener thread started
+        }
+      
     }
 
     /** Stops the skeleton server, if it is already running.
@@ -241,15 +254,134 @@ public class Skeleton<T>
         <code>stopped</code> is called at that point. The server may then be
         restarted.
      */
-    public synchronized void stop()
+    public synchronized void stop() 
     {
-        try {
-            listenerThreadObj.stop();
-            this.listenerThreadObj.askedToClose = true;
-           while(!listenerThreadObj.isStopped) {}
-           stopped(null);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+          if(thread != null){ //stop is only executed if the server is in start state
+              try {
+                  socket.close(); //close the socket
+                  listenerThread.stopExeService();// stop executor service, which will wait for all the service 
+              } catch (IOException ex) {          //thread to process it's execution before closing 
+                  throw new Error("Error closing socket" + ex);
+              }
+              thread=null; //initialize the listener thread to null
+              this.stopped(null);
+          }
     }
+       
+}
+
+ class threadListener<T> extends Thread{
+     
+     private Skeleton<T> skeleton; //skeleton object for referring skeleton class
+     private T server; //server object to refer server class
+     private Class<T> c;// interface object
+     private ServerSocket socket;//Opened socket object
+     InetSocketAddress address;// address to be bounded
+     public Thread thread = null;
+     ExecutorService exeService ; //executor service to control threads
+     List<Future> serviceThreadExeList = new ArrayList<Future>();//Represent list of result from asynchronous computation 
+     int port;
+     public threadListener(Skeleton<T> skeleton, T server, Class<T> c, InetSocketAddress address, ServerSocket socket, boolean isSocketOpen){
+         this.skeleton=skeleton;
+         this.server=server;
+         this.c=c;
+         this.address=address;
+         this.socket=socket;
+         exeService=Executors.newCachedThreadPool();
+     }
+     //When the stop is called from skeleton this function informs service threads to wait for it's current
+     //tasks to complete before ending service thread
+     public synchronized void stopExeService(){
+         for(Future tasks : serviceThreadExeList) //gets the list of all tasks(service thread tasks) under exectution 
+                {
+             try {
+                 tasks.get(); //waits for each tasks to be completed before the service thread ends.
+             } catch (InterruptedException ex) {
+                 System.out.println("Service thread wait state interrupted" + ex.getMessage());
+             } catch (ExecutionException ex) {
+                System.out.println("Error during execution of wait task request" + ex.getMessage());
+             }
+                    
+                }
+         
+     }
+     
+     @Override
+     public void run(){
+         while(skeleton.thread!= null && !skeleton.thread.isInterrupted()){// process request from client untill listener thread is running
+             try {
+                 if(!this.socket.isClosed()){
+                 Socket incomingRequest= this.socket.accept(); //
+                 Future curServiceThread = exeService.submit(new Thread(new incomingRequestThread(this.skeleton, incomingRequest, this.server, c)));//creates service threads for client
+                 serviceThreadExeList.add(curServiceThread);//add each of the service threads task to the list for informing it to wait and completes it's execution in case server is stopped
+                 }
+             } catch (IOException ex) {
+               
+             }
+             catch (Exception ex) {
+                 ex.printStackTrace();
+               
+             }
+         }
+       
+     } 
+}
+
+
+class incomingRequestThread<T> extends Thread{
+
+    private Skeleton skeleton;
+    private Socket socket;
+    private T server;
+    private Class<T> c;
+    public incomingRequestThread(Skeleton skeleton, Socket socket, T server, Class<T> c) {
+        this.skeleton=skeleton;
+        this.socket=socket;
+        this.server=server;
+        this.c=c;
+    }
+  
+    @Override
+      public void run(){
+        try {
+            ObjectOutputStream output;
+            ObjectInputStream input;
+            Object response=null;
+            input= new ObjectInputStream(this.socket.getInputStream()); //create the input stream
+            output= new ObjectOutputStream(this.socket.getOutputStream()); // create output stream
+             String methodName=(String) input.readObject(); //fetch method to be executed from input stream
+             Object[] list=(Object[]) input.readObject(); //fetch the argument
+             Class[] parameterType =  (Class[])input.readObject();
+             Method met = null;
+              try {
+                       met= this.server.getClass().getMethod(methodName, parameterType); //fetch the method given the class, method name string and parameter type
+                      
+              } catch (NoSuchMethodException ex) {  //return error if no method or security excpetion is thrown
+                 ex.printStackTrace();
+              } catch (SecurityException ex) {
+                 ex.printStackTrace();
+              }
+             
+              try {
+                  response= met.invoke(server, list);//invoke method on the server object and get the response
+                  output.writeObject(response);//write the response on output objecct stream
+                 
+              } catch (IllegalAccessException ex) {
+                  Logger.getLogger(incomingRequestThread.class.getName()).log(Level.SEVERE, null, ex);
+              } catch (IllegalArgumentException ex) {
+                  Logger.getLogger(incomingRequestThread.class.getName()).log(Level.SEVERE, null, ex);
+              } catch (InvocationTargetException ex) {
+                  output.writeObject(ex);
+              }
+                 
+        } catch (EOFException ex) {
+           
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(incomingRequestThread.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(incomingRequestThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+     }
 }
