@@ -138,11 +138,10 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
             throw new IllegalArgumentException();
         }
 
-        try {
-            System.out.println("Dir Abs PAth - " + directory.getCanonicalPath());
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(directory == null) {
+            throw new NullPointerException();
         }
+
         try {
 
             String p = directory.getCanonicalPath();
@@ -156,9 +155,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
 
             for (String file : files) {
                 paths[++i] = new Path(file);
-                System.out.println("List : " + new File(file).getCanonicalPath());
-
-
+                //System.out.println("List : " + new File(file).getCanonicalPath());
             }
 
         } catch (Exception e) {
@@ -184,9 +181,9 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
                         String offset = parent.getPath();
 
                         path = path.substring(offset.length());
-                        System.out.println("Adding to path - " + path);
+                        //System.out.println("Adding to path - " + path);
                         lstFiles.add(path);
-                        System.out.println((new File(path).exists()));
+                        //System.out.println((new File(path).exists()));
                     }
                 }
             }
@@ -286,12 +283,12 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
     public File toFile(File root)
     {
         if(root == null) {
-            System.out.println("Creating new file in - " + root.getPath());
-            System.out.println("to string is................." + this.toString() + "\n");
+            //System.out.println("Creating new file in - " + root.getPath());
+            //System.out.println("to string is................." + this.toString() + "\n");
             return new File(this.toString());
         }
 
-        System.out.println("returning new File for " + root.getPath() + this.toString());
+//        System.out.println("returning new File for " + root.getPath() + this.toString());
         return new File(root.getPath() + this.toString());
 
     }

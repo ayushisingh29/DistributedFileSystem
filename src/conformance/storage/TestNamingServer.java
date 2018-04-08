@@ -91,8 +91,6 @@ public class TestNamingServer implements naming.Registration
                                         Command command_stub, Path[] files)
         throws RMIException
     {
-
-        System.out.println( " Print The server name :  Error!!! Error!!!" );
         // Ensure that none of the arguments are null.
         if(client_stub == null)
         {
