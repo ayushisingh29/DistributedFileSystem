@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class Path implements Iterable<String>, Comparable<Path>, Serializable
 {
-    String root = null;
+    public String root = null;
     public ArrayList<String> pathList = new ArrayList<>();
 
     /** Creates a new path which represents the root directory. */
@@ -130,16 +130,13 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
     public static Path[] list(File directory) throws FileNotFoundException
     {
         Path paths[] = null;
+
         if(!directory.exists()) {
             throw new FileNotFoundException();
         }
 
         if(!directory.isDirectory()) {
             throw new IllegalArgumentException();
-        }
-
-        if(directory == null) {
-            throw new NullPointerException();
         }
 
         try {
@@ -161,13 +158,12 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return paths;
     }
 
 
 
-    private static List<String> listFiles(File parent, File folder) {
+     private static List<String> listFiles(File parent, File folder) {
         List<String> lstFiles = new ArrayList<String>();
         if (folder.isDirectory()) {
 

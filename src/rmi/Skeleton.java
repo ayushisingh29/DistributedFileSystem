@@ -319,7 +319,7 @@ public class Skeleton<T>
                
              }
              catch (Exception ex) {
-                 ex.printStackTrace();
+                 //ex.printStackTrace();
                
              }
          }

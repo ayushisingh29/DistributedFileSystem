@@ -14,7 +14,7 @@ import naming.*;
  <p>
  Storage servers respond to client file access requests. The files accessible
  through a storage server are those accessible under a given directory of the
- local filesystem.
+ local file//System.
  */
 public class StorageServer implements Storage, Command
 {
@@ -28,19 +28,19 @@ public class StorageServer implements Storage, Command
     Path[] filePaths;
     public File root;
 
-    /** Creates a storage server, given a directory on the local filesystem, and
+    /** Creates a storage server, given a directory on the local file//System, and
      ports to use for the client and command interfaces.
 
      <p>
      The ports may have to be specified if the storage server is running
      behind a firewall, and specific ports are open.
 
-     @param root Directory on the local filesystem. The contents of this
+     @param root Directory on the local file//System. The contents of this
      directory will be accessible through the storage server.
      @param client_port Port to use for the client interface, or zero if the
-     system should decide the port.
+     //System should decide the port.
      @param command_port Port to use for the command interface, or zero if
-     the system should decide the port.
+     the //System should decide the port.
      @throws NullPointerException If <code>root</code> is <code>null</code>.
      */
     public StorageServer(File root, int client_port, int command_port)
@@ -55,14 +55,14 @@ public class StorageServer implements Storage, Command
         //throw new UnsupportedOperationException("not implemented");
     }
 
-    /** Creats a storage server, given a directory on the local filesystem.
+    /** Creats a storage server, given a directory on the local file//System.
 
      <p>
      This constructor is equivalent to
-     <code>StorageServer(root, 0, 0)</code>. The system picks the ports on
+     <code>StorageServer(root, 0, 0)</code>. The //System picks the ports on
      which the interfaces are made available.
 
-     @param root Directory on the local filesystem. The contents of this
+     @param root Directory on the local file//System. The contents of this
      directory will be accessible through the storage server.
      @throws NullPointerException If <code>root</code> is <code>null</code>.
      */
@@ -74,13 +74,12 @@ public class StorageServer implements Storage, Command
 
         try {
             this.root=root;
-            this.root=root;
             storageSkeleton = new Skeleton(Storage.class,this);
             commandSkeleton = new Skeleton(Command.class,this);
 
             this.filePaths = Path.list(root);
 
-            //System.out.println("Skeleton started$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+            ////System.out.println("Skeleton started$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -112,24 +111,21 @@ public class StorageServer implements Storage, Command
             throws RMIException, UnknownHostException, FileNotFoundException
     {
         startSkeleton(hostname);
-        //System.out.println("Start called with hostname - " + hostname);
+        ////System.out.println("Start called with hostname - " + hostname);
 
-        //System.out.println("Stub created");
-        //System.out.println(storageStub);
-        //System.out.println(commandStub);
+        ////System.out.println("Stub created");
+        ////System.out.println(storageStub);
+        ////System.out.println(commandStub);
 
-        for(int i = 0;i < filePaths.length; i++) {
-            //System.out.println(this.filePaths[i].toString());
-        }
-
-        //System.out.println("naming servre " + naming_server.getClass().getName());
-        System.out.println(this.getClass().getName() + ": Start called : Registering the storage server");
+        ////System.out.println("naming servre " + naming_server.getClass().getName());
+        //System.out.println(this.getClass().getName() + ": Start called : Registering the storage server");
         Path[] delete_files = naming_server.register(storageStub, commandStub, filePaths);
 
-
-        for(Path path : delete_files)
-        {
-            delete(path);
+        if(delete_files.length > 0) {
+            for(Path path : delete_files)
+            {
+                delete(path);
+            }
         }
 
         //throw new UnsupportedOperationException("not implemented");
@@ -162,7 +158,6 @@ public class StorageServer implements Storage, Command
     {
         this.storageSkeleton.stop();
         this.commandSkeleton.stop();
-
         stopped(null);
         //throw new UnsupportedOperationException("not implemented");
     }
@@ -256,30 +251,30 @@ public class StorageServer implements Storage, Command
             throws FileNotFoundException, IOException {
 
         if(data == null) {
-            //System.out.println(" Data  = null");
+            ////System.out.println(" Data  = null");
             throw new NullPointerException();
         }
 
-        //System.out.println("Write request for offset - " + offset + " and data size = " + data.length);
+        ////System.out.println("Write request for offset - " + offset + " and data size = " + data.length);
 
         File f = new File(this.root.getAbsolutePath() + "/" +file.toString());
 
         if( !f.exists() ||  f.isDirectory()) {
-            //System.out.println(" File not found. ");
+            ////System.out.println(" File not found. ");
             throw new FileNotFoundException();
         }
 
         if(offset < 0) {
-            //System.out.println(" Wrong offset.");
+            ////System.out.println(" Wrong offset.");
             throw new IndexOutOfBoundsException();
         }
 
         RandomAccessFile dataFile = new RandomAccessFile(f, "rw");
-        //System.out.println("Writing to offset");
+        ////System.out.println("Writing to offset");
         dataFile.seek(offset);
         dataFile.write(data);
         dataFile.close();
-        //System.out.println("Write completed");
+        ////System.out.println("Write completed");
     }
 
     // The following methods are documented in Command.java.
@@ -296,7 +291,7 @@ public class StorageServer implements Storage, Command
      */
     public synchronized boolean create(Path file)
     {
-        //System.out.println(" Create requested for - " + file.toString());
+        ////System.out.println(" Create requested for - " + file.toString());
         if(file.pathList.size() != 1 ) {
 
             String dirPath  = this.root.getAbsolutePath() + file.parent().toString();
@@ -304,17 +299,17 @@ public class StorageServer implements Storage, Command
             File parentDir  = new File(dirPath);
 
             if(!parentDir.exists()) {
-                //System.out.println("Creating parent directory = " + parentDir.getAbsolutePath());
+                ////System.out.println("Creating parent directory = " + parentDir.getAbsolutePath());
                 boolean pdc = parentDir.mkdirs();
                 if(pdc) {
-                    //System.out.println("Parent created");
+                    ////System.out.println("Parent created");
                 }
                 else {
-                    //System.out.println("Unable to create parent");
+                    ////System.out.println("Unable to create parent");
                 }
             }
             else{
-                //System.out.println("Parent dir exists already");
+                ////System.out.println("Parent dir exists already");
             }
 
             File newFile = new File(parentDir.getAbsolutePath() + "/" + fileName);
@@ -324,14 +319,14 @@ public class StorageServer implements Storage, Command
             }
 
             try{
-                //System.out.println("Creating file " + newFile.getAbsolutePath());
+                ////System.out.println("Creating file " + newFile.getAbsolutePath());
                 boolean newFile1 = newFile.createNewFile();
                 if(newFile1) {
-                    //System.out.println("Created - " +  newFile.getAbsolutePath());
+                    ////System.out.println("Created - " +  newFile.getAbsolutePath());
                 }
 
                 else {
-                    //System.out.println(" Not created");
+                    ////System.out.println(" Not created");
                 }
                 return true;
             }
@@ -379,18 +374,18 @@ public class StorageServer implements Storage, Command
     @Override
     public synchronized boolean delete(Path path)
     {
-        //System.out.println("Delete requestd for " + path.toString());
+        ////System.out.println("Delete requestd for " + path.toString());
         boolean ans = false;
-        //System.out.println("Purging the path " + path.toString());
+        ////System.out.println("Purging the path " + path.toString());
         if(path.toString().equals("/")) {
             return false;
         }
 
-        //System.out.println("Delete all - " + path.pathList);
+        ////System.out.println("Delete all - " + path.pathList);
         try {
 
             File file = path.toFile(this.root);
-            //System.out.println("!!!!!!!File " + file.getAbsolutePath() + " !!!!!" +file.exists() + "\n");
+            ////System.out.println("!!!!!!!File " + file.getAbsolutePath() + " !!!!!" +file.exists() + "\n");
 
 
             if(!file.exists()) {
@@ -399,7 +394,7 @@ public class StorageServer implements Storage, Command
 
             if(file.delete()) {
                 ans = true;
-                //System.out.println(file.getName() + " - deleted" + "\n");
+                ////System.out.println(file.getName() + " - deleted" + "\n");
             }
             else{
                 deleteChild(file);
@@ -409,19 +404,19 @@ public class StorageServer implements Storage, Command
 
             File directory = new File(this.root.getAbsolutePath() +"/"+ path.parent().toString());
 
-            //System.out.println("Directory - " + directory.getAbsolutePath());
+            ////System.out.println("Directory - " + directory.getAbsolutePath());
 
             while(!directory.getAbsolutePath().equals(this.root.getAbsolutePath()) && directory.isDirectory() && directory.list().length == 0) {
 
-                //System.out.println("Directory empty");
+                ////System.out.println("Directory empty");
                 boolean isDeleted = directory.delete();
                 path.pathList.remove(path.pathList.size()-1);
-                //System.out.println("Removed, new path - " + path.toString());
+                ////System.out.println("Removed, new path - " + path.toString());
                 directory = new File(this.root.getAbsolutePath() +"/"+ path.parent().toString());
                 ans = true;
             }
 
-            //System.out.println("Directory is not empty - " + directory.getAbsolutePath() + " number of files " + directory.length() );
+            ////System.out.println("Directory is not empty - " + directory.getAbsolutePath() + " number of files " + directory.length() );
             return ans;
         }
         catch(Exception ex) {
