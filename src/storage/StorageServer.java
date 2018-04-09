@@ -82,7 +82,7 @@ public class StorageServer implements Storage, Command
             ////System.out.println("Skeleton started$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
 
         } catch (Exception e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
 
     }
@@ -143,7 +143,7 @@ public class StorageServer implements Storage, Command
             this.commandStub = Stub.create(Command.class, this.commandSkeleton, hostname);
 
         } catch (RMIException e) {
-            e.printStackTrace();
+         //   e.printStackTrace();
         }
 
 
@@ -332,7 +332,7 @@ public class StorageServer implements Storage, Command
             }
             //TODO: check network error
             catch (IOException e){
-                e.printStackTrace();
+                //e.printStackTrace();
                 return false;
             }
         }
@@ -420,7 +420,7 @@ public class StorageServer implements Storage, Command
             return ans;
         }
         catch(Exception ex) {
-            ex.printStackTrace();
+//            ex.printStackTrace();
         }
         return ans;
     }

@@ -3,6 +3,7 @@ package naming;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import rmi.*;
 import common.*;
@@ -11,8 +12,8 @@ import storage.*;
 /** Naming server.
 
  <p>
- Each instance of the file////System is centered on a single naming server. The
- naming server maintains the file////System directory tree. It does not store any
+ Each instance of the file//System is centered on a single naming server. The
+ naming server maintains the file//////System directory tree. It does not store any
  file data - this is done by separate storage servers. The primary purpose of
  the naming server is to map each file name (path) to the storage server
  which hosts the file's contents.
@@ -22,7 +23,7 @@ import storage.*;
  <code>Registration</code>, which are accessible through RMI. Storage servers
  use the <code>Registration</code> interface to inform the naming server of
  their existence. Clients use the <code>Service</code> interface to perform
- most file////System operations. The documentation accompanying these interfaces
+ most file//////System operations. The documentation accompanying these interfaces
  provides details on the methods supported.
 
  <p>
@@ -46,6 +47,7 @@ public class NamingServer implements Service, Registration
     HashMap<Path,Command> pathStorageStubMap = new HashMap<>();
     HashMap<Command,Storage> storageClientMap = new HashMap<>();
     String currentRoot;
+    volatile ConcurrentHashMap<Path, ReadWriteLock> lockMap;
 
 
     public NamingServer()
@@ -53,13 +55,13 @@ public class NamingServer implements Service, Registration
         try {
             currentRoot = new File( "." ).getCanonicalPath();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         File f = new File(currentRoot+"/dummyRoot");
         f.mkdir();
         this.currentRoot = f.getPath();
-        //System.out.println(" Using root for name server as " + currentRoot);
-        ////System.out.println(this.getClass().getName() + ":Default Constructor");
+        ////System.out.println(" Using root for name server as " + currentRoot);
+        //////System.out.println(this.getClass().getName() + ":Default Constructor");
         InetSocketAddress serviceAddress = new InetSocketAddress("localhost", 6000);
         InetSocketAddress registerAddress = new InetSocketAddress("localhost", 6001);
 
@@ -67,8 +69,7 @@ public class NamingServer implements Service, Registration
         registerSkeleton = new Skeleton(Registration.class,this, registerAddress);
         pathStorageStubMap = new HashMap<>();
         storageClientMap = new HashMap<>();
-
-
+        lockMap = new ConcurrentHashMap<>();
 
         //throw new UnsupportedOperationException("not implemented");
     }
@@ -110,7 +111,7 @@ public class NamingServer implements Service, Registration
      */
     public synchronized void start() throws RMIException
     {
-        ////System.out.println(this.getClass().getName()+":Start Called");
+        //////System.out.println(this.getClass().getName()+":Start Called");
         startSkeleton();
         //throw new UnsupportedOperationException("not implemented");
     }
@@ -118,7 +119,7 @@ public class NamingServer implements Service, Registration
     private void startSkeleton() throws RMIException {
         serviceSkeleton.start();
         registerSkeleton.start();
-        ////System.out.println(this.getClass().getName()+":Skeletons started without error.");
+        //////System.out.println(this.getClass().getName()+":Skeletons started without error.");
     }
 
     /** Stops the naming server.
@@ -142,7 +143,7 @@ public class NamingServer implements Service, Registration
             deleteChild(new File(this.currentRoot));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         stopped(null);
         //throw new UnsupportedOperationException("not implemented");
@@ -165,13 +166,148 @@ public class NamingServer implements Service, Registration
     @Override
     public void lock(Path path, boolean exclusive) throws FileNotFoundException
     {
-        throw new UnsupportedOperationException("not implemented");
+
+        if(path ==  null) {
+
+            throw new NullPointerException();
+        }
+
+
+        File f = new File(this.currentRoot + path.toString());
+
+        if(!f.exists()) {
+            throw new FileNotFoundException();
+        }
+
+
+        Path directory = path.toString().equals("/")?path : path.parent();
+
+        while(!directory.toString().equals("/") && !directory.toString().equals("")) {
+            ReadWriteLock lockObj = lockMap.containsKey(directory) ? lockMap.get(directory): new ReadWriteLock();
+            try {
+                lockObj.lockRead();
+                lockMap.putIfAbsent(directory,lockObj);
+            } catch (InterruptedException e) {
+                //e.printStackTrace();
+            }
+            directory = directory.parent();
+        }
+
+        ReadWriteLock lockObj = lockMap.containsKey(path) ? lockMap.get(path): new ReadWriteLock();
+        try {
+            if (exclusive) {
+                lockObj.lockWrite();
+                lockMap.putIfAbsent(path, lockObj);
+            } else {
+                lockObj.lockRead();
+                lockMap.putIfAbsent(path,lockObj);
+            }
+        }catch (InterruptedException e) {
+            //e.printStackTrace();
+        }
+
+        if(!path.toString().equals("/")) {
+
+                lockObj = lockMap.containsKey(new Path("/")) ? lockMap.get(new Path("/")): new ReadWriteLock();
+
+                try {
+
+                    lockObj.lockRead();
+
+                }
+
+                catch (InterruptedException ignored) {
+                }
+
+        }
     }
 
     @Override
     public void unlock(Path path, boolean exclusive)
     {
-        throw new UnsupportedOperationException("not implemented");
+
+        if(path ==  null) {
+            throw new NullPointerException();
+        }
+
+
+        File f = new File(this.currentRoot + path.toString());
+
+        if(!f.exists()) {
+            throw new IllegalArgumentException();
+        }
+
+        Path directory = path.toString().equals("/")?path : path.parent();
+
+        while(!directory.toString().equals("/")) {
+
+
+            if(directory.toString().equals("")) {
+                break;
+            }
+
+            ReadWriteLock unlockObj = lockMap.get(directory);
+
+            if(unlockObj.readers > 0) {
+                unlockObj.unlockRead();
+            }
+
+            directory = directory.parent();
+
+        }
+
+        if(!path.toString().equals("/"))
+        {
+            if(exclusive){
+
+
+                ReadWriteLock lockObj = null;
+
+                lockObj = lockMap.get(path);
+
+                try {
+
+                    if(lockObj.writers > 0) {
+
+
+                        lockObj.unlockWrite();
+
+                    }
+
+                }
+
+                catch (InterruptedException e) {
+
+                }
+
+            }
+
+            else {
+                ReadWriteLock lockObj = lockMap.get(path);
+                if(lockObj.readers > 0) {
+
+                    lockObj.unlockRead();
+
+                }
+            }
+        }
+
+        ReadWriteLock lockObj = lockMap.get(new Path("/"));
+
+        try {
+            if (exclusive && path.toString().equals("/")) {
+                if(lockObj.writers > 0) {
+                    lockObj.unlockWrite();
+                }
+
+            } else {
+                if(lockObj.readers > 0) {
+                    lockObj.unlockRead();
+                }
+            }
+        }
+        catch (InterruptedException e) {
+        }
     }
 
     @Override
@@ -198,8 +334,6 @@ public class NamingServer implements Service, Registration
         if(directory == null) {
             throw new NullPointerException();
         }
-
-        //System.out.println("List path of Naming server is called " + directory.toString());
         String dirString = "";
 
         if(!this.pathStorageStubMap.containsKey(directory) && !directory.toString().equals("/")) {
@@ -211,7 +345,6 @@ public class NamingServer implements Service, Registration
         }
         else {
             dirString = this.currentRoot + directory.toString();
-            //System.out.println("DirString  -  " + dirString);
         }
 
         File dir = new File(dirString);
@@ -229,27 +362,22 @@ public class NamingServer implements Service, Registration
         try {
 
             String p = dir.getPath();
-            //System.out.println("Path of directory is " + p);
 
             File parentPath = new File(p);
 
             List<String> files = listFiles(parentPath,parentPath);
 
 
-            //System.out.println("Returning list " + files);
             return files.toArray(new String[0]);
 
 
         } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return null;
-        //throw new UnsupportedOperationException("not implemented");
     }
 
     static List<String> listFiles(File parent, File folder) {
-        ////System.out.println("Parent and folder are: " + parent.getPath().toString() + "....." + folder.getPath().toString());
         List<String> lstFiles = new ArrayList<String>();
         if (folder.isDirectory()) {
 
@@ -287,7 +415,7 @@ public class NamingServer implements Service, Registration
             try {
                 if(f.createNewFile()) {
 
-                    //System.out.println(" File " + f.getPath() +" created in naming server.");
+                    ////System.out.println(" File " + f.getPath() +" created in naming server.");
 
                     Map.Entry<Path, Command> entry = this.pathStorageStubMap.entrySet().iterator().next();
 
@@ -298,17 +426,17 @@ public class NamingServer implements Service, Registration
 
 
                     if(cstub.create(file)) {
-                        //System.out.println(" File " + f.getPath() +" created in storage server.");
+                        ////System.out.println(" File " + f.getPath() +" created in storage server.");
                         this.pathStorageStubMap.put(file, cstub);
                         return true;
                     }
                     return false;
                 } else {
-                    //System.out.println("File not craeted");
+                    ////System.out.println("File not craeted");
                     return false;
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                ////e.printStackTrace();
             }
         } else {
             throw new FileNotFoundException();
@@ -334,10 +462,10 @@ public class NamingServer implements Service, Registration
             if(dir.mkdir()) {
                 Command cstub = this.pathStorageStubMap.get(file.parent());
                 this.pathStorageStubMap.put(file, cstub);
-                //System.out.println(dir.getPath() + " :Directory created");
+                ////System.out.println(dir.getPath() + " :Directory created");
                 return true;
             } else {
-                //System.out.println(dir.getPath() + " :Directory not created");
+                ////System.out.println(dir.getPath() + " :Directory not created");
                 return false;
             }
         } else {
@@ -383,45 +511,33 @@ public class NamingServer implements Service, Registration
         this.deleteFiles = new ArrayList<>();
 
         if(client_stub == null || command_stub == null || files == null) {
-            //////System.out.println(this.getClass().getName() + ":Register called with - clientStub null or command stub null" +
-            //"or path null.");
             throw new NullPointerException();
         }
 
         if(this.storageClientMap.containsKey(command_stub)) {
-            ////System.out.println(this.getClass().getName() + ":Register called with - duplicate arguments.");
             throw new IllegalStateException();
         }
 
-        ////System.out.println(this.getClass().getName() + ":Register:registering storage server.");
-
         this.storageClientMap.put(command_stub,client_stub);
-
-        ////System.out.println(this.getClass().getName() + ":Register with path files size: " + files.length);
-
 
         for(Path p: files) {
             try {
-                //System.out.println(this.getClass().getName() + ":Listing files in register - " + p.toString());
 
                 if(this.pathStorageStubMap.containsKey(p)) {
 
-                    ////System.out.println(this.getClass().getName()+":Register:deleting the existing path " + p.toString());
                     this.deleteFiles.add(p);
 
                 }
                 else {
 
                     createLocalFile(p);
-                    //System.out.println("adding this to map: " + p.toString());
                     this.pathStorageStubMap.put(p, command_stub);
                     if(p.toString().equals("/")) {
-                       continue;
+                        continue;
                     }
                     Path directory = p.parent();
 
                     while(!directory.toString().equals("/") && !this.pathStorageStubMap.containsKey(directory) && directory.toString().length() > 0) {
-                        //System.out.println("adding this to map: " + directory.toString());
                         this.pathStorageStubMap.put(directory, command_stub);
                         directory = directory.parent();
                     }
@@ -431,7 +547,7 @@ public class NamingServer implements Service, Registration
 
             }
             catch (Exception e) {
-                e.printStackTrace();
+                ////e.printStackTrace();
             }
         }
 
@@ -440,7 +556,6 @@ public class NamingServer implements Service, Registration
 
     public synchronized boolean createLocalFile(Path file)
     {
-        //System.out.println(" Create requested for - "  + file.toString());
 
         if(file.pathList.size() != 1 ) {
 
@@ -450,39 +565,22 @@ public class NamingServer implements Service, Registration
             File parentDir  = new File(dirPath);
 
             if(!parentDir.exists()) {
-
-                //System.out.println("Creating parent directory = " + parentDir.getPath());
-
                 boolean pdc = parentDir.mkdirs();
-
-                if(pdc) {
-                    //System.out.println("Parent created");
-                }
-                else {
-                    //System.out.println("Unable to create parent");
-                }
-
-            }
-            else{
-
-                //System.out.println("Parent dir exists already");
             }
 
             File newFile = new File(parentDir.getPath() +"/"+ fileName);
 
             if(newFile.exists()) {
-                //System.out.println("File already existing not creating - " + newFile.getAbsolutePath());
                 return false;
             }
 
             try{
-                //System.out.println("Creating file " + newFile.getAbsolutePath());
                 newFile.createNewFile();
                 return true;
             }
             //TODO: check network error
             catch (IOException e){
-                e.printStackTrace();
+                ////e.printStackTrace();
                 return false;
             }
         }

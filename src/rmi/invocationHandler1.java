@@ -81,7 +81,11 @@ import java.net.Socket;
           if(ex instanceof IllegalStateException){
               throw ex;
           }
-         //ex.printStackTrace();
+           if(ex instanceof IllegalArgumentException){
+               throw ex;
+           }
+
+           //ex.printStackTrace();
           throw new RMIException("error");
        }finally{
            try{

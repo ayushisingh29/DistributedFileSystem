@@ -308,18 +308,14 @@ public class Skeleton<T>
      
      @Override
      public void run(){
-         while(skeleton.thread!= null && !skeleton.thread.isInterrupted()){// process request from client untill listener thread is running
+         while(skeleton.thread!= null && !skeleton.thread.isInterrupted()){// process request from client until listener thread is running
              try {
                  if(!this.socket.isClosed()){
                  Socket incomingRequest= this.socket.accept(); //
                  Future curServiceThread = exeService.submit(new Thread(new incomingRequestThread(this.skeleton, incomingRequest, this.server, c)));//creates service threads for client
                  serviceThreadExeList.add(curServiceThread);//add each of the service threads task to the list for informing it to wait and completes it's execution in case server is stopped
                  }
-             } catch (IOException ex) {
-               
-             }
-             catch (Exception ex) {
-                 //ex.printStackTrace();
+             } catch (Exception ignored) {
                
              }
          }
@@ -366,9 +362,8 @@ class incomingRequestThread<T> extends Thread{
                   response= met.invoke(server, list);//invoke method on the server object and get the response
                   output.writeObject(response);//write the response on output objecct stream
                  
-              } catch (IllegalAccessException ex) {
-                  Logger.getLogger(incomingRequestThread.class.getName()).log(Level.SEVERE, null, ex);
-              } catch (IllegalArgumentException ex) {
+              }
+              catch (IllegalArgumentException | IllegalAccessException ex) {
                   Logger.getLogger(incomingRequestThread.class.getName()).log(Level.SEVERE, null, ex);
               } catch (InvocationTargetException ex) {
                   output.writeObject(ex);

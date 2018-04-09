@@ -156,7 +156,7 @@ public class Path implements Iterable<String>, Comparable<Path>, Serializable
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return paths;
     }

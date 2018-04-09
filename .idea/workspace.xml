@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2a7cb479-d5a6-4b34-bdeb-32ae037759bc" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/naming/ReadWriteLock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/conformance/ConformanceTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/conformance/ConformanceTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/conformance/naming/ListingTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/conformance/naming/ListingTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/naming/NamingServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/naming/NamingServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rmi/Skeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/Skeleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rmi/invocationHandler1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/invocationHandler1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/storage/StorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/storage/StorageServer.java" afterDir="false" />
     </list>
     <ignored path="DistributedFileSystems.iws" />
@@ -30,8 +33,8 @@
       <file leaf-file-name="StorageServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/storage/StorageServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="365" column="9" selection-start-line="365" selection-start-column="9" selection-end-line="365" selection-end-column="9" />
+            <state relative-caret-position="9088">
+              <caret line="422" column="25" selection-start-line="422" selection-start-column="17" selection-end-line="422" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -42,22 +45,20 @@
       <file leaf-file-name="NamingServer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/naming/NamingServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="893">
-              <caret line="371" column="9" selection-start-line="371" selection-start-column="9" selection-end-line="371" selection-end-column="9" />
+            <state relative-caret-position="-4174">
+              <caret line="380" column="5" selection-start-line="380" selection-start-column="5" selection-end-line="380" selection-end-column="5" />
               <folding>
-                <element signature="e#5652#5653#0" expanded="true" />
-                <element signature="e#5726#5727#0" expanded="true" />
-                <element signature="e#7873#7881#0" expanded="true" />
+                <element signature="e#15180#15188#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StubRetrievalTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/conformance/naming/StubRetrievalTest.java">
+      <file leaf-file-name="LockTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/conformance/naming/LockTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="137" selection-start-line="137" selection-end-line="137" />
+            <state relative-caret-position="538">
+              <caret line="605" selection-start-line="605" selection-end-line="605" />
             </state>
           </provider>
         </entry>
@@ -65,11 +66,38 @@
       <file leaf-file-name="Skeleton.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rmi/Skeleton.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1235">
-              <caret line="321" column="19" selection-start-line="321" selection-start-column="19" selection-end-line="321" selection-end-column="19" />
+            <state relative-caret-position="3223">
+              <caret line="310" column="110" selection-start-line="310" selection-start-column="110" selection-end-line="310" selection-end-column="110" />
               <folding>
                 <element signature="e#11923#11931#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Stub.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmi/Stub.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="invocationHandler1.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmi/invocationHandler1.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1140">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReadWriteLock.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/naming/ReadWriteLock.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="608">
+              <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -83,23 +111,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Series.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/Series.java">
+      <file leaf-file-name="Path.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/common/Path.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25802">
-              <caret line="696" selection-start-line="696" selection-end-line="696" />
+            <state relative-caret-position="603">
+              <caret line="158" column="26" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="26" />
               <folding>
-                <element signature="e#27220#27221#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#4834#4842#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ListingTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/conformance/naming/ListingTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-19">
-              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -107,34 +127,20 @@
       <file leaf-file-name="Service.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/naming/Service.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="743">
-              <caret line="228" column="19" selection-start-line="228" selection-start-column="19" selection-end-line="228" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/storage/Command.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Path.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/Path.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4978">
-              <caret line="132" selection-start-line="132" selection-end-line="132" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="280">
+              <caret line="114" column="40" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="40" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -154,11 +160,17 @@
       <find>directory</find>
       <find>`</find>
       <find>System</find>
+      <find>ex</find>
+      <find>catch</find>
+      <find>printStackTrace</find>
+      <find>printSta</find>
+      <find>stack</find>
     </findStrings>
     <replaceStrings>
       <replace>//System.</replace>
       <replace>//System.out</replace>
       <replace>//System</replace>
+      <replace>//e.printStackTrace</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -178,10 +190,13 @@
         <option value="$PROJECT_DIR$/src/conformance/storage/RegistrationTest.java" />
         <option value="$PROJECT_DIR$/src/conformance/storage/TestNamingServer.java" />
         <option value="$PROJECT_DIR$/src/naming/Service.java" />
+        <option value="$PROJECT_DIR$/src/conformance/naming/ListingTest.java" />
+        <option value="$PROJECT_DIR$/src/rmi/invocationHandler1.java" />
+        <option value="$PROJECT_DIR$/src/rmi/Skeleton.java" />
+        <option value="$PROJECT_DIR$/src/naming/ReadWriteLock.java" />
+        <option value="$PROJECT_DIR$/src/conformance/naming/LockTest.java" />
         <option value="$PROJECT_DIR$/src/storage/StorageServer.java" />
         <option value="$PROJECT_DIR$/src/common/Path.java" />
-        <option value="$PROJECT_DIR$/src/conformance/naming/ListingTest.java" />
-        <option value="$PROJECT_DIR$/src/rmi/Skeleton.java" />
         <option value="$PROJECT_DIR$/src/naming/NamingServer.java" />
       </list>
     </option>
@@ -218,6 +233,12 @@
               <item name="DistributedFileSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="DistributedFileSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DistributedFileSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="naming" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -227,6 +248,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
@@ -352,7 +376,14 @@
       <option name="project" value="LOCAL" />
       <updated>1523227775713</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Conformance - Regular passing : 13 Test cases">
+      <created>1523249291803</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1523249291804</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -372,12 +403,12 @@
       <window_info active="true" anchor="bottom" x="130" y="48" width="3710" height="2112" id="Terminal" order="7" sideWeight="0.49973047" type="WINDOWED" visible="true" weight="0.30898875" />
       <window_info id="Capture Tool" order="4" />
       <window_info anchor="right" id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.14716981" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14716981" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.24986523" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="right" id="Theme Preview" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.39989784" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39989784" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -432,25 +463,12 @@
     <MESSAGE value="Path Test Finished" />
     <MESSAGE value="Storage Server Operation Finished - 8 tests Passing" />
     <MESSAGE value="New invocation handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="New invocation handler" />
+    <MESSAGE value="Conformance - Regular passing : 13 Test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Conformance - Regular passing : 13 Test cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/conformance/naming/CreationTest.java</url>
-          <line>87</line>
-          <properties />
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/naming/NamingServer.java</url>
-          <line>293</line>
-          <properties />
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="47" />
+      <option name="time" value="64" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -487,24 +505,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/rmi/Stub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2660">
-          <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/conformance/naming/TestStorageServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4066">
-          <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
-          <folding>
-            <element signature="e#8014#8015#0" expanded="true" />
-            <element signature="e#8082#8083#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/conformance/storage/StorageTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4066">
@@ -661,7 +661,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/rmi/ListenerThread.java" />
     <entry file="file://$PROJECT_DIR$/src/rmi/ServiceThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/rmi/invocationHandler1.java" />
     <entry file="file://$PROJECT_DIR$/src/rmi/MyInvocationHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/conformance/storage/RegistrationTest.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -719,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Stub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="73" column="5" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/conformance/naming/RegistrationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6688">
@@ -757,30 +749,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/Path.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4978">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/conformance/naming/ListingTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-19">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/storage/StorageServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="365" column="9" selection-start-line="365" selection-start-column="9" selection-end-line="365" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -791,30 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/conformance/naming/CreationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Skeleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1235">
-          <caret line="321" column="19" selection-start-line="321" selection-start-column="19" selection-end-line="321" selection-end-column="19" />
-          <folding>
-            <element signature="e#11923#11931#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/naming/Service.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="743">
-          <caret line="228" column="19" selection-start-line="228" selection-start-column="19" selection-end-line="228" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/conformance/naming/StubRetrievalTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -822,17 +770,163 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/naming/NamingServer.java">
+    <entry file="file://$PROJECT_DIR$/src/naming/Service.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="371" column="9" selection-start-line="371" selection-start-column="9" selection-end-line="371" selection-end-column="9" />
+        <state relative-caret-position="280">
+          <caret line="114" column="40" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/invocationHandler1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1140">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/Stub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/conformance/naming/CreationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/naming/ReadWriteLock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/Skeleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3223">
+          <caret line="310" column="110" selection-start-line="310" selection-start-column="110" selection-end-line="310" selection-end-column="110" />
           <folding>
-            <element signature="e#5652#5653#0" expanded="true" />
-            <element signature="e#5726#5727#0" expanded="true" />
-            <element signature="e#7873#7881#0" expanded="true" />
+            <element signature="e#11923#11931#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/conformance/naming/LockTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="538">
+          <caret line="605" selection-start-line="605" selection-end-line="605" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/Path.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="158" column="26" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4834#4842#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/storage/StorageServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9088">
+          <caret line="422" column="25" selection-start-line="422" selection-start-column="17" selection-end-line="422" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/naming/NamingServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4174">
+          <caret line="380" column="5" selection-start-line="380" selection-start-column="5" selection-end-line="380" selection-end-column="5" />
+          <folding>
+            <element signature="e#15180#15188#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>DistributedFileSystems</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

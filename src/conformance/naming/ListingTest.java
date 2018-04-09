@@ -5,7 +5,7 @@ import java.io.*;
 import test.*;
 import common.*;
 
-/** Test the naming server <code>list</code> and <code>isDirectory</code>
+/** Tests the naming server <code>list</code> and <code>isDirectory</code>
     methods.
 
     <p>
@@ -98,14 +98,6 @@ public class ListingTest extends NamingTest
         // children.
         if(!TestUtil.sameElements(listing, expected_children))
         {
-            System.out.println("Expected - " + expected_children);
-            for(String s : expected_children) {
-                System.out.println(s);
-            }
-            System.out.println("Got      - " + listing.toString());
-            for(String s : listing) {
-                System.out.println(s);
-            }
             throw new TestFailed("directory listing incorrect for " + path);
         }
 
