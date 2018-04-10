@@ -226,7 +226,6 @@ public class StorageServer implements Storage, Command
             throw new IndexOutOfBoundsException();
         }
 
-
         RandomAccessFile data = new RandomAccessFile(f, "r");
         datum = new byte[length];
         data.seek(offset);
@@ -374,9 +373,12 @@ public class StorageServer implements Storage, Command
     @Override
     public synchronized boolean delete(Path path)
     {
-        ////System.out.println("Delete requestd for " + path.toString());
+        //System.out.println("Delete requestd for %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5 " + path.toString());
         boolean ans = false;
         ////System.out.println("Purging the path " + path.toString());
+        if(path == null) {
+            throw new NullPointerException();
+        }
         if(path.toString().equals("/")) {
             return false;
         }
@@ -430,7 +432,43 @@ public class StorageServer implements Storage, Command
     public synchronized boolean copy(Path file, Storage server)
             throws RMIException, FileNotFoundException, IOException
     {
-        throw new UnsupportedOperationException("not implemented");
-//        return true;
+
+        long size = server.size(file);
+        //System.out.println("size of original files " + size);
+        int itr = (int)(size/Integer.MAX_VALUE);
+        int size1 = (int)(size > Integer.MAX_VALUE ? Integer.MAX_VALUE : size);
+        int len  = 0;
+        byte[] byteArray;
+        File f = new File(this.root.toString() + file.toString());
+        if(f.exists()) {
+            //System.out.println("New file creation started");
+            f.delete();
+
+            //System.out.println("New file created");
+        }
+        this.create(file);
+
+        FileOutputStream fout = new FileOutputStream(f,true);
+        BufferedOutputStream bw = new BufferedOutputStream(fout);
+        while(len < size) {
+            //System.out.println("Reading at offset " + len + "size = " + size1);
+            byteArray = server.read(file, len, size1);
+            //System.out.println("Read " + byteArray.length);
+            len = size1;
+            size1 = (int)(size-size1 > Integer.MAX_VALUE ? Integer.MAX_VALUE : size - size1);
+            //System.out.println("will read " + size1 + " next");
+            //System.out.println("writing bytes " + byteArray.length + " to new file");
+            bw.write(byteArray);
+        }
+
+        bw.flush();
+        fout.close();
+        bw.close();
+
+        if(f.length() == size) {
+            return true;
+        }
+
+        return false;
     }
 }

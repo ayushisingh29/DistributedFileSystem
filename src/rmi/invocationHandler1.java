@@ -93,7 +93,7 @@ import java.net.Socket;
                  soc.close();
             }
            }catch(Exception ex){
-               ex.printStackTrace();
+               //ex.printStackTrace();
            }
        }
         

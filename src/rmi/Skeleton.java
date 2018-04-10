@@ -353,9 +353,9 @@ class incomingRequestThread<T> extends Thread{
                        met= this.server.getClass().getMethod(methodName, parameterType); //fetch the method given the class, method name string and parameter type
                       
               } catch (NoSuchMethodException ex) {  //return error if no method or security excpetion is thrown
-                 ex.printStackTrace();
+                 //ex.printStackTrace();
               } catch (SecurityException ex) {
-                 ex.printStackTrace();
+                 //ex.printStackTrace();
               }
              
               try {
