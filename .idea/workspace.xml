@@ -1,75 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/naming/NamingServer.java" line="184" />
     <bookmark url="file://$PROJECT_DIR$/src/storage/StorageServer.java" description="public synchronized boolean copy(Path file, Storag..." line="431" />
+    <bookmark url="file://$PROJECT_DIR$/src/naming/NamingServer.java" line="174" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a7cb479-d5a6-4b34-bdeb-32ae037759bc" name="Default" comment="Conformance - Regular passing : 15 Test cases with Multithreading">
-      <change afterPath="$PROJECT_DIR$/src/conformance/ConformanceTests.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/common/PathTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/ContactTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/CreationTest$CreationTestStorageServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/CreationTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/DeletionTest$DeletionStorageServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/DeletionTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/DeletionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/ListingTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest$FirstExclusiveUser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest$LockUser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest$RendezvousUser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest$SecondExclusiveUser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest$WakeTask.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/LockTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/NamingTest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/NamingTest$TestNamingServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/NamingTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/QueueTest$QueuedLockUser.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/QueueTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/QueueTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/RegistrationTest$UnsuccessfulStorageServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/RegistrationTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/ReplicationTest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/ReplicationTest$InvalidationStorageServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/ReplicationTest$MirrorStorageServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/ReplicationTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/ReplicationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/StubRetrievalTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/TestStorageServer$CommandSkeleton.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/TestStorageServer$StorageSkeleton.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/naming/TestStorageServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/BadInterface.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/ConnectionTest$TestSkeleton.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/ConnectionTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/SkeletonTest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/SkeletonTest$BadInterfaceImplementation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/SkeletonTest$TestSkeleton.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/SkeletonTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/StubTest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/StubTest$ConnectionCheckThread.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/StubTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/TestInterface.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/TestServer.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/ThreadTest$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/ThreadTest$SecondThread.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/ThreadTest$TestSkeleton.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/rmi/ThreadTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/AccessTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/DirectoryTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/RegistrationTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/ReplicationTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/ReplicationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/StorageTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/TestNamingServer$TestSkeleton.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/conformance/storage/TestNamingServer.class" afterDir="false" />
+    <list default="true" id="2a7cb479-d5a6-4b34-bdeb-32ae037759bc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DistributedFileSystems.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DistributedFileSystems.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/conformance/naming/ReplicationTest$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/naming/NamingServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/naming/NamingServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rmi/RMIException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/RMIException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rmi/SampleClassUnderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/SampleClassUnderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/rmi/Skeleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/Skeleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/rmi/invocationHandler1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/invocationHandler1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/storage/StorageServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/storage/StorageServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rmi/Stub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/Stub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rmi/invocationHandler1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/rmi/package-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rmi/package-info.java" afterDir="false" />
     </list>
     <ignored path="DistributedFileSystems.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -88,49 +33,14 @@
     <favorites_list name="DistributedFileSystems" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="StorageServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/storage/StorageServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11850">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/storage/Command.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="880">
-              <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NamingServer.java" pinned="false" current-in-tab="true">
+    <leaf>
+      <file leaf-file-name="NamingServer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/naming/NamingServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1091">
-              <caret line="626" column="23" selection-start-line="626" selection-start-column="12" selection-end-line="626" selection-end-column="23" />
+            <state relative-caret-position="-32">
+              <caret line="159" column="55" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#10680#10688#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestStorageServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/conformance/naming/TestStorageServer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-              <folding>
-                <element signature="e#8014#8015#0" expanded="true" />
-                <element signature="e#8082#8083#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -139,57 +49,35 @@
       <file leaf-file-name="ReplicationTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/conformance/naming/ReplicationTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1164">
-              <caret line="190" column="5" selection-start-line="190" selection-start-column="5" selection-end-line="190" selection-end-column="5" />
+            <state relative-caret-position="556">
+              <caret line="174" column="9" selection-start-line="174" selection-start-column="9" selection-end-line="174" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Service.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/naming/Service.java">
+      <file leaf-file-name="MyInvocationHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmi/MyInvocationHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="207" column="44" selection-start-line="206" selection-start-column="38" selection-end-line="207" selection-end-column="44" />
+            <state relative-caret-position="2041">
+              <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LockTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/conformance/naming/LockTest.java">
+      <file leaf-file-name="ServiceThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rmi/ServiceThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2571">
-              <caret line="633" column="1" selection-start-line="633" selection-start-column="1" selection-end-line="633" selection-end-column="1" />
+            <state relative-caret-position="523">
+              <caret line="46" column="55" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeletionTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/conformance/naming/DeletionTest.java">
+      <file leaf-file-name="ListenerThread.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/rmi/ListenerThread.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-182">
-              <caret line="103" selection-start-line="103" selection-end-line="103" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="invocationHandler1.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/rmi/invocationHandler1.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Path.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/Path.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="603">
-              <caret line="158" column="26" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4834#4842#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1245">
+              <caret line="53" lean-forward="true" selection-end-line="55" />
             </state>
           </provider>
         </entry>
@@ -214,7 +102,6 @@
       <find>na</find>
       <find>size</find>
       <find>tofil</find>
-      <find>System.out</find>
       <find>delete</find>
       <find>create</find>
       <find>list</find>
@@ -231,13 +118,22 @@
       <find>checking naming server replication policy</find>
       <find>MirrorS</find>
       <find>deletions</find>
+      <find>System.out</find>
+      <find>([ \t]*//.*)</find>
+      <find>incomingRequestThread</find>
+      <find>messa</find>
+      <find>ex.</find>
     </findStrings>
     <replaceStrings>
       <replace>//System.</replace>
-      <replace>//System.out</replace>
       <replace>//System</replace>
       <replace>//e.printStackTrace</replace>
+      <replace>//System.out</replace>
+      <replace>ServiceThread</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/rmi</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="DONT_SYNC" />
@@ -250,9 +146,6 @@
         <option value="$PROJECT_DIR$/src/conformance/naming/CreationTest.java" />
         <option value="$PROJECT_DIR$/src/conformance/storage/StorageTest.java" />
         <option value="$PROJECT_DIR$/src/naming/Registration.java" />
-        <option value="$PROJECT_DIR$/src/rmi/ServiceThread.java" />
-        <option value="$PROJECT_DIR$/src/rmi/Stub.java" />
-        <option value="$PROJECT_DIR$/src/rmi/MyInvocationHandler.java" />
         <option value="$PROJECT_DIR$/src/conformance/storage/RegistrationTest.java" />
         <option value="$PROJECT_DIR$/src/conformance/storage/TestNamingServer.java" />
         <option value="$PROJECT_DIR$/src/naming/Service.java" />
@@ -261,12 +154,18 @@
         <option value="$PROJECT_DIR$/src/conformance/naming/LockTest.java" />
         <option value="$PROJECT_DIR$/src/common/Path.java" />
         <option value="$PROJECT_DIR$/src/rmi/invocationHandler1.java" />
-        <option value="$PROJECT_DIR$/src/rmi/Skeleton.java" />
         <option value="$PROJECT_DIR$/src/conformance/naming/TestStorageServer.java" />
         <option value="$PROJECT_DIR$/src/conformance/naming/ReplicationTest.java" />
         <option value="$PROJECT_DIR$/src/conformance/naming/DeletionTest.java" />
         <option value="$PROJECT_DIR$/src/storage/StorageServer.java" />
         <option value="$PROJECT_DIR$/src/naming/NamingServer.java" />
+        <option value="$PROJECT_DIR$/rmi/invocationHandler1.java" />
+        <option value="$PROJECT_DIR$/rmi/Skeleton.java" />
+        <option value="$PROJECT_DIR$/src/rmi/Stub.java" />
+        <option value="$PROJECT_DIR$/src/rmi/MyInvocationHandler.java" />
+        <option value="$PROJECT_DIR$/src/rmi/Skeleton.java" />
+        <option value="$PROJECT_DIR$/src/rmi/ServiceThread.java" />
+        <option value="$PROJECT_DIR$/src/rmi/ListenerThread.java" />
       </list>
     </option>
   </component>
@@ -289,6 +188,7 @@
     </navigator>
     <panes>
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -306,13 +206,7 @@
               <item name="DistributedFileSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="DistributedFileSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="storage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DistributedFileSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DistributedFileSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="rmi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="DistributedFileSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -322,7 +216,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -477,70 +370,48 @@
       <option name="project" value="LOCAL" />
       <updated>1523265604451</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="DFS working code. All test cases passed- RAW">
+      <created>1523333818132</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1523333818132</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="130" y="-8" width="3710" height="2168" extended-state="6" />
+    <frame x="129" y="13" width="3712" height="2148" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="7" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.3299285" />
       <window_info id="Palette&#9;" order="6" />
       <window_info id="Image Layers" order="0" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50026953" side_tool="true" weight="0.3156282" />
-      <window_info anchor="right" id="Maven Projects" order="6" weight="0.32991913" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3299285" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" x="130" y="48" width="3710" height="2112" id="Terminal" order="7" sideWeight="0.49973047" type="WINDOWED" visible="true" weight="0.30898875" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info anchor="right" id="Designer" order="5" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14716981" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3299285" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.24986523" />
-      <window_info id="UI Designer" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39989784" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Thumbnails" order="8" weight="0.3298731" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="7" />
-      <window_info anchor="bottom" id="Thumbnails" order="9" weight="0.3298731" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3299285" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.24986523" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14716981" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Theme Preview" order="0" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info id="Image Layers" order="0" />
-      <window_info anchor="right" id="Designer" order="5" />
-      <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39989784" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3299285" />
-      <window_info id="Palette&#9;" order="6" />
-      <window_info active="true" anchor="bottom" x="130" y="48" width="3710" height="2112" id="Terminal" order="7" sideWeight="0.49973047" type="WINDOWED" visible="true" weight="0.30898875" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50026953" side_tool="true" weight="0.3156282" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="8" />
       <window_info anchor="right" id="Maven Projects" order="6" weight="0.32991913" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2793667" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info active="true" anchor="bottom" x="130" y="48" width="3710" height="2112" id="Terminal" order="7" sideWeight="0.49973047" type="WINDOWED" visible="true" weight="0.30898875" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info anchor="right" id="Designer" order="5" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.14716981" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3299285" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.24986523" />
+      <window_info id="UI Designer" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="0" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39989784" />
       <window_info id="Favorites" order="5" side_tool="true" />
-    </layout-to-restore>
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Thumbnails" order="9" weight="0.3298731" />
+    </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -559,7 +430,8 @@
     <MESSAGE value="New invocation handler" />
     <MESSAGE value="Conformance - Regular passing : 13 Test cases" />
     <MESSAGE value="Conformance - Regular passing : 15 Test cases with Multithreading" />
-    <option name="LAST_COMMIT_MESSAGE" value="Conformance - Regular passing : 15 Test cases with Multithreading" />
+    <MESSAGE value="DFS working code. All test cases passed- RAW" />
+    <option name="LAST_COMMIT_MESSAGE" value="DFS working code. All test cases passed- RAW" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -576,11 +448,17 @@
           <properties />
           <option name="timeStamp" value="83" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/storage/StorageServer.java</url>
+          <line>121</line>
+          <properties />
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="84" />
+      <option name="time" value="98" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -589,6 +467,16 @@
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>oos.writeObject(args)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>method.getName()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>this.pathStorageStubMap.entrySet().iterator().next()</expression-string>
         <language-id>JAVA</language-id>
@@ -617,30 +505,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/rmi/Skeleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2812">
-          <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Stub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2660">
-          <caret line="70" column="56" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/MyInvocationHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/rmi/ListenerThread.java" />
     <entry file="file://$PROJECT_DIR$/src/conformance/naming/TestStorageServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4066">
           <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
-          <folding>
-            <element signature="e#8014#8015#0" expanded="true" />
-            <element signature="e#8082#8083#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -687,13 +555,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/String.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="105" column="19" selection-start-line="105" selection-start-column="19" selection-end-line="105" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/String.class" />
     <entry file="file://$PROJECT_DIR$/src/conformance/common/PathTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-736">
@@ -715,16 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/conformance/storage/StorageTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4066">
-          <caret line="111" column="37" selection-start-line="111" selection-start-column="37" selection-end-line="111" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/ListenerThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/rmi/ServiceThread.java" />
-    <entry file="file://$PROJECT_DIR$/src/rmi/MyInvocationHandler.java" />
     <entry file="file://$PROJECT_DIR$/src/conformance/storage/RegistrationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1520">
@@ -799,9 +651,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="25802">
           <caret line="696" selection-start-line="696" selection-end-line="696" />
-          <folding>
-            <element signature="e#27220#27221#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -816,13 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="137" selection-start-line="137" selection-end-line="137" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Stub.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="75" column="36" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -844,44 +686,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="603">
           <caret line="158" column="26" selection-start-line="158" selection-start-column="21" selection-end-line="158" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4834#4842#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/concurrent/Executors.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1013">
-          <caret line="152" selection-start-line="152" selection-end-line="152" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/util/concurrent/Executors.class" />
     <entry file="file://$PROJECT_DIR$/src/conformance/storage/ReplicationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="622">
           <caret line="98" selection-start-line="98" selection-end-line="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/Skeleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="736">
-          <caret line="38" column="57" selection-start-line="38" selection-start-column="57" selection-end-line="38" selection-end-column="57" />
-          <folding>
-            <element signature="e#11923#11931#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DistributedFileSystems.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/conformance/naming/ReplicationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1164">
-          <caret line="190" column="5" selection-start-line="190" selection-start-column="5" selection-end-line="190" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -906,21 +718,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/rmi/invocationHandler1.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/conformance/naming/TestStorageServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#8014#8015#0" expanded="true" />
-            <element signature="e#8082#8083#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -938,24 +739,102 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/java/lang/Thread.class" />
+    <entry file="file://$PROJECT_DIR$/src/conformance/rmi/ConnectionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3116">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/storage/StorageServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11850">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="4332">
+          <caret line="121" column="73" selection-start-line="121" selection-start-column="73" selection-end-line="121" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rmi/Skeleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="283" column="69" selection-start-line="283" selection-start-column="59" selection-end-line="283" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rmi/invocationHandler1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1104">
+          <caret line="86" lean-forward="true" selection-start-line="70" selection-start-column="9" selection-end-line="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/conformance/rmi/StubTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6650">
+          <caret line="177" column="76" selection-start-line="177" selection-start-column="68" selection-end-line="177" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/conformance/storage/StorageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4636">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/invocationHandler1.java" />
+    <entry file="file://$PROJECT_DIR$/src/rmi/Stub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1102">
+          <caret line="74" column="14" selection-start-line="74" selection-start-column="14" selection-end-line="74" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/naming/NamingServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1091">
-          <caret line="626" column="23" selection-start-line="626" selection-start-column="12" selection-end-line="626" selection-end-column="23" />
+        <state relative-caret-position="-32">
+          <caret line="159" column="55" selection-start-line="159" selection-start-column="55" selection-end-line="159" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#10680#10688#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/Skeleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1840">
+          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/conformance/naming/ReplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="174" column="9" selection-start-line="174" selection-start-column="9" selection-end-line="174" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/MyInvocationHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2041">
+          <caret line="95" column="5" selection-start-line="95" selection-start-column="5" selection-end-line="95" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/ServiceThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="46" column="55" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rmi/ListenerThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="53" lean-forward="true" selection-end-line="55" />
         </state>
       </provider>
     </entry>

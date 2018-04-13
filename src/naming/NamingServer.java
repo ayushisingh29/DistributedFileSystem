@@ -12,8 +12,8 @@ import storage.*;
 /** Naming server.
 
  <p>
- Each instance of the file//System is centered on a single naming server. The
- naming server maintains the file//////System directory tree. It does not store any
+ Each instance of the file
+ naming server maintains the file
  file data - this is done by separate storage servers. The primary purpose of
  the naming server is to map each file name (path) to the storage server
  which hosts the file's contents.
@@ -23,7 +23,7 @@ import storage.*;
  <code>Registration</code>, which are accessible through RMI. Storage servers
  use the <code>Registration</code> interface to inform the naming server of
  their existence. Clients use the <code>Service</code> interface to perform
- most file//////System operations. The documentation accompanying these interfaces
+ most file
  provides details on the methods supported.
 
  <p>
@@ -57,13 +57,13 @@ public class NamingServer implements Service, Registration
         try {
             currentRoot = new File( "." ).getCanonicalPath();
         } catch (IOException e) {
-            //e.printStackTrace();
+
         }
         File f = new File(currentRoot+"/dummyRoot");
         f.mkdir();
         this.currentRoot = f.getPath();
-        ////System.out.println(" Using root for name server as " + currentRoot);
-        //////System.out.println(this.getClass().getName() + ":Default Constructor");
+
+
         InetSocketAddress serviceAddress = new InetSocketAddress("localhost", 6000);
         InetSocketAddress registerAddress = new InetSocketAddress("localhost", 6001);
 
@@ -75,7 +75,7 @@ public class NamingServer implements Service, Registration
         pathReadCount = new ConcurrentHashMap<>();
         pathReplicated = new ConcurrentHashMap<>();
 
-        //throw new UnsupportedOperationException("not implemented");
+
     }
 
     /**
@@ -115,15 +115,12 @@ public class NamingServer implements Service, Registration
      */
     public synchronized void start() throws RMIException
     {
-        //////System.out.println(this.getClass().getName()+":Start Called");
         startSkeleton();
-        //throw new UnsupportedOperationException("not implemented");
     }
 
     private void startSkeleton() throws RMIException {
         serviceSkeleton.start();
         registerSkeleton.start();
-        //////System.out.println(this.getClass().getName()+":Skeletons started without error.");
     }
 
     /** Stops the naming server.
@@ -138,7 +135,7 @@ public class NamingServer implements Service, Registration
     public void stop()
     {
 
-        System.out.println(" Stopping Naming server");
+
         serviceSkeleton.stop();
         registerSkeleton.stop();
         this.pathCommandStubMap.clear();
@@ -148,10 +145,10 @@ public class NamingServer implements Service, Registration
             deleteChild(new File(this.currentRoot));
 
         } catch (IOException e) {
-            //e.printStackTrace();
+
         }
         stopped(null);
-        //throw new UnsupportedOperationException("not implemented");
+
     }
 
     /** Indicates that the server has completely shut down.
@@ -167,23 +164,10 @@ public class NamingServer implements Service, Registration
     {
     }
 
-    // The following public methods are documented in Service.java.
+
     @Override
     public void lock(Path path, boolean exclusive) throws FileNotFoundException
     {
-//        System.out.println(" ---- Path command Map-------");
-//
-//        for(Map.Entry<Path, Command> s : this.pathCommandStubMap.entrySet()) {
-//            System.out.println("Path - " + s.getKey().toString() + ", Command -- " + s.getValue());
-//        }
-//        System.out.println(" ----End  Path command Map-------");
-//
-//        System.out.println(" ---- Commmand Storage Map-------");
-//        for(Map.Entry<Command,Storage> s : this.commandStorageMap.entrySet()) {
-//            System.out.println("Command - " + s.getKey() + ", Storage  -- " + s.getValue());
-//        }
-//        System.out.println(" ----End of Commmand Storage Map-------");
-
         if(path ==  null) {
 
             throw new NullPointerException();
@@ -199,12 +183,12 @@ public class NamingServer implements Service, Registration
             if(this.pathReadCount.containsKey(path)) {
                 int count  = this.pathReadCount.get(path);
                 if(count >= 20) {
-                    System.out.println("Read more than 20 times. So replicating " + path.toString());
+
                     Storage cstub = this.commandStorageMap.get(this.pathCommandStubMap.get(path));
                     for(Map.Entry<Command, Storage> s : this.commandStorageMap.entrySet()) {
                         if(s.getKey() != this.pathCommandStubMap.get(path)) {
                             try {
-                                //System.out.println("copying from " + cstub + " into " + s.getKey() + "__________________----------------______________________");
+
                                 (s.getKey()).copy(path,cstub);
                             } catch (RMIException | IOException e) {
                                 e.printStackTrace();
@@ -216,9 +200,8 @@ public class NamingServer implements Service, Registration
                     this.pathReadCount.put(path, count);
 
                     Path directory = path.parent();
-                    System.out.println("######################################################");
+
                     while(!directory.toString().equals("/") && !directory.toString().equals("")) {
-                        System.out.println("Adding directories to replicated map " + directory.toString());
                         this.pathReplicated.put(directory, true);
                         directory = directory.parent();
                     }
@@ -236,7 +219,6 @@ public class NamingServer implements Service, Registration
             for(Map.Entry<Command,Storage> s : this.commandStorageMap.entrySet()) {
                 if(s.getKey() != cstub) {
                     try {
-                        //System.out.println("Deleting path from all replication.");
                         s.getKey().delete(path);
                     } catch (RMIException e) {
                         e.printStackTrace();
@@ -246,13 +228,6 @@ public class NamingServer implements Service, Registration
             this.pathReplicated.put(path, false);
         }
 
-        //System.out.println("Locking "  + exclusive +" for - " + path.toString());
-
-
-
-
-
-
         Path directory = path.toString().equals("/")?path : path.parent();
 
         while(!directory.toString().equals("/") && !directory.toString().equals("")) {
@@ -261,7 +236,7 @@ public class NamingServer implements Service, Registration
                 lockObj.lockRead();
                 lockMap.putIfAbsent(directory,lockObj);
             } catch (InterruptedException e) {
-                //e.printStackTrace();
+
             }
             directory = directory.parent();
         }
@@ -273,11 +248,10 @@ public class NamingServer implements Service, Registration
                 lockMap.putIfAbsent(path, lockObj);
             } else {
                 lockObj.lockRead();
-                //System.out.println(" Locking " + path.toString() + " with read.");
                 lockMap.putIfAbsent(path,lockObj);
             }
         }catch (InterruptedException e) {
-            //e.printStackTrace();
+
         }
 
         if(!path.toString().equals("/")) {
@@ -294,22 +268,11 @@ public class NamingServer implements Service, Registration
             catch (InterruptedException ignored) {
             }
         }
-//        for(Map.Entry<Path, ReadWriteLock> s : this.lockMap.entrySet()) {
-//            System.out.println("Path - " + s.getKey().toString());
-//            System.out.println("Readers - " + s.getValue().readers);
-//            System.out.println("Writer - " + s.getValue().writers);
-//        }
-
-
-
     }
 
     @Override
     public void unlock(Path path, boolean exclusive)
     {
-
-
-        //System.out.println("unlocking for - " + path.toString());
 
         if(path ==  null) {
             throw new NullPointerException();
@@ -393,12 +356,6 @@ public class NamingServer implements Service, Registration
         }
         catch (InterruptedException e) {
         }
-
-//        for(Map.Entry<Path, ReadWriteLock> s : this.lockMap.entrySet()) {
-//            System.out.println("Path - " + s.getKey().toString());
-//            System.out.println("Readers - " + s.getValue().readers);
-//            System.out.println("Writer - " + s.getValue().writers);
-//        }
     }
 
     @Override
@@ -506,8 +463,6 @@ public class NamingServer implements Service, Registration
             try {
                 if(f.createNewFile()) {
 
-                    ////System.out.println(" File " + f.getPath() +" created in naming server.");
-
                     Map.Entry<Path, Command> entry = this.pathCommandStubMap.entrySet().iterator().next();
 
                     Command altStub = entry.getValue();
@@ -517,17 +472,15 @@ public class NamingServer implements Service, Registration
 
 
                     if(cstub.create(file)) {
-                        ////System.out.println(" File " + f.getPath() +" created in storage server.");
                         this.pathCommandStubMap.put(file, cstub);
                         return true;
                     }
                     return false;
                 } else {
-                    ////System.out.println("File not craeted");
                     return false;
                 }
             } catch (IOException e) {
-                ////e.printStackTrace();
+
             }
         } else {
             throw new FileNotFoundException();
@@ -553,10 +506,8 @@ public class NamingServer implements Service, Registration
             if(dir.mkdir()) {
                 Command cstub = this.pathCommandStubMap.get(file.parent());
                 this.pathCommandStubMap.put(file, cstub);
-                ////System.out.println(dir.getPath() + " :Directory created");
                 return true;
             } else {
-                ////System.out.println(dir.getPath() + " :Directory not created");
                 return false;
             }
         } else {
@@ -578,57 +529,21 @@ public class NamingServer implements Service, Registration
 
         }
 
-        System.out.println("Delete requested for " + path.toString());
-
-        if(path.toString().equals("/directory")) {
-            System.out.println(" ---- Path command Map-------");
-
-            for(Map.Entry<Path, Command> s : this.pathCommandStubMap.entrySet()) {
-                System.out.println("Path - " + s.getKey().toString() + ", Command -- " + s.getValue());
+        for(Map.Entry<Command,Storage> s : this.commandStorageMap.entrySet()) {
+            try {
+                s.getKey().delete(path);
+            } catch (RMIException e) {
+                e.printStackTrace();
+                return false;
             }
-            System.out.println(" ----End  Path command Map-------");
-
-            System.out.println(" ---- Commmand Storage Map-------");
-            for(Map.Entry<Command,Storage> s : this.commandStorageMap.entrySet()) {
-                System.out.println("Command - " + s.getKey() + ", Storage  -- " + s.getValue());
-            }
-            System.out.println(" ----End of Commmand Storage Map-------");
-
-            System.out.println(" ---- Path Boolean Map-------");
-            for(Map.Entry<Path,Boolean> s : this.pathReplicated.entrySet()) {
-                System.out.println("Path - " + s.getKey().toString() + ", replicated  -- " + s.getValue());
-            }
-            System.out.println(" ----End of Path Boolean Map-------");
         }
+        this.pathReplicated.remove(path);
 
-        //if(this.pathReplicated.containsKey(path) && this.pathReplicated.get(path)) {
-            for(Map.Entry<Command,Storage> s : this.commandStorageMap.entrySet()) {
-                try {
-                    s.getKey().delete(path);
-                } catch (RMIException e) {
-                    e.printStackTrace();
-                    return false;
-                }
-            }
-            this.pathReplicated.remove(path);
-//        //} else {
-//            try {
-//                if(this.pathCommandStubMap.containsKey(path)) {
-//                    this.pathCommandStubMap.get(path).delete(path);
-//                }
-//            } catch (RMIException e) {
-//                e.printStackTrace();
-//                return false;
-//            }
-//            this.pathCommandStubMap.remove(path);
-//        }
         File f = new File(this.currentRoot + path.toString());
         if(f.exists()) {
             f.delete();
-            System.out.println("Deleting from self");
         }
         return true;
-        //throw new UnsupportedOperationException("not implemented");
     }
 
     @Override
@@ -652,7 +567,7 @@ public class NamingServer implements Service, Registration
         return (this.commandStorageMap.get(this.pathCommandStubMap.get(file)));
     }
 
-    // The method register is documented in Registration.java.
+
     @Override
     public Path[] register(Storage client_stub, Command command_stub,
                            Path[] files)
@@ -667,12 +582,6 @@ public class NamingServer implements Service, Registration
         if(this.commandStorageMap.containsKey(command_stub)) {
             throw new IllegalStateException();
         }
-
-        System.out.println("Register called by command stub - " + command_stub + " and client stub - " + client_stub);
-        for(Path p : files) {
-            System.out.println("Path - " + p.toString());
-        }
-        System.out.println("End of print for register");
 
         this.commandStorageMap.put(command_stub,client_stub);
 
@@ -703,7 +612,7 @@ public class NamingServer implements Service, Registration
 
             }
             catch (Exception e) {
-                ////e.printStackTrace();
+
             }
         }
 
@@ -734,9 +643,9 @@ public class NamingServer implements Service, Registration
                 newFile.createNewFile();
                 return true;
             }
-            //TODO: check network error
+
             catch (IOException e){
-                ////e.printStackTrace();
+
                 return false;
             }
         }
